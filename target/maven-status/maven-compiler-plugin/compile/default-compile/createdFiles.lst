@@ -1,0 +1,5 @@
+com/poc/graphql/usuario/UsuarioRepository.class
+com/poc/graphql/query/Query.class
+com/poc/graphql/usuario/Usuario.class
+com/poc/graphql/mutations/Mutation.class
+com/poc/graphql/PocGraphQlApplication.class
