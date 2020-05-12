@@ -18,3 +18,7 @@ type Mutation {
     alterarUsuario(id: Int!, nome: String, cpf: String): Usuario
     apagarUsuario(id: Int!): Usuario
 }
+
+type Subscription{
+	usuarios: Usuario!
+}

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
 	private UsuarioRepository usuarioRepository;
+	private UsuarioPublisher usuarioPublisher; 
 
-	public UsuarioService(UsuarioRepository usuarioRepository) {
+	public UsuarioService(UsuarioRepository usuarioRepository, UsuarioPublisher usuarioPublisher) {
 		this.usuarioRepository = usuarioRepository;
+		this.usuarioPublisher = usuarioPublisher; 
 
 	}
 
@@ -19,6 +21,8 @@ public class UsuarioService {
 		Usuario usuario = new Usuario(nome, cpf);
 
 		usuarioRepository.save(usuario);
+		
+		usuarioPublisher.publish(usuario);
 
 		return usuario;
 	}
