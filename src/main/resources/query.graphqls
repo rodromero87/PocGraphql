@@ -21,4 +21,5 @@ type Mutation {
 
 type Subscription{
 	usuarios: Usuario!
+	usuarioAlterado(id: Int): Usuario!
 }

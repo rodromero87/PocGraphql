@@ -8,32 +8,38 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.observables.ConnectableObservable;
 
-
 @Component
 public class UsuarioPublisher {
 
 	private final Flowable<Usuario> publisher;
-	
+
 	private ObservableEmitter<Usuario> emitter;
-	
+
 	public UsuarioPublisher() {
-		
+
 		Observable<Usuario> usuarioObservable = Observable.create(emitter -> {
-			this.emitter = emitter; 
+			this.emitter = emitter;
 		});
-		
+
 		ConnectableObservable<Usuario> connectableObservable = usuarioObservable.share().publish();
 		connectableObservable.connect();
-		
+
 		this.publisher = connectableObservable.toFlowable(BackpressureStrategy.BUFFER);
 	}
-	
-	
+
 	public void publish(final Usuario usuario) {
 		emitter.onNext(usuario);
 	}
 	
-	public Flowable<Usuario> getPublisher(){
+	public Flowable<Usuario> getPublisher() {
+		return publisher;
+	}
+
+	public Flowable<Usuario> getPublisher(Integer id) {
+
+		if (id != null && id > 0) {
+			return this.publisher.filter(p -> p.getId().equals(id));
+		}
 		return publisher;
 	}
 }

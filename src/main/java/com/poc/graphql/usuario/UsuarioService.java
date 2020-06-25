@@ -36,7 +36,7 @@ public class UsuarioService {
 			usuario.setCpf(cpf);
 
 			usuarioRepository.save(usuario);
-
+			usuarioPublisher.publish(usuario);
 			return usuario;
 		}
 

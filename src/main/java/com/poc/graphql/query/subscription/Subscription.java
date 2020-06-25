@@ -23,4 +23,8 @@ public class Subscription implements GraphQLSubscriptionResolver{
 		return usuarioPublisher.getPublisher();
 	}
 	
+	Publisher<Usuario> usuarioAlterado(Integer id){
+		return usuarioPublisher.getPublisher(id);
+	}
+	
 }
